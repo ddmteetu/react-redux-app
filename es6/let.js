@@ -21,3 +21,9 @@ if (name3 == "Vishvendra") {
 
 // 'let' variables are 'block' scoped, can not access below
 console.log(fullName); // 'var' is 'function' scoped
+
+// 'Duplicate' variable declaration is possible with 'var'
+var name = "Vishvendra";
+var name = "Rayan";
+
+console.log(name);
