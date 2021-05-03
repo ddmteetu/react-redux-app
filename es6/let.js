@@ -16,7 +16,8 @@ printName();*/
 var name3 = "Vishvendra";
 
 if (name3 == "Vishvendra") {
-  var fullName = "Vishvendra Singh";
+  let fullName = "Vishvendra Singh";
 }
 
+// 'let' variables are 'block' scoped, can not access below
 console.log(fullName); // 'var' is 'function' scoped
