@@ -27,3 +27,9 @@ var name = "Vishvendra";
 var name = "Rayan";
 
 console.log(name);
+
+// 'Duplicate' variable declaration is not possible with 'let'
+let name = "Vishvendra";
+let name = "Rayan"; // throws an error
+
+console.log(name);
