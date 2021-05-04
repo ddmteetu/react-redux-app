@@ -35,6 +35,12 @@ class Main extends Component {
     }));
   }
 
+  addPhoto(postSubmitted) {
+    this.setState(state => ({
+      posts: state.posts.concat([postSubmitted])
+    }))
+  }
+
   componentDidMount() {
     console.log('componentDidMount');
   }
@@ -59,7 +65,12 @@ class Main extends Component {
             <PhotoWall posts={this.state.posts} onRemovePhoto={this.removePhoto} />
           </div>
         )} />
-        <Route path="/AddPhoto" component={AddPhoto} />
+        <Route path="/AddPhoto" render={({history}) => (
+          <AddPhoto onAddPhoto={(addedPost) => {
+            this.addPhoto(addedPost);
+            history.push('/');
+          }} />
+        )} />
       </div>
     );
   }
