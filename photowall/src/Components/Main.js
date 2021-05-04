@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Title from './Title';
 import PhotoWall from './PhotoWall';
+import AddPhoto from './AddPhoto';
 
 class Main extends Component {
   constructor() {
@@ -19,9 +20,11 @@ class Main extends Component {
            id: "2",
            description: "On a vacation!",
            imageLink: "https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2017/08/24/104670887-VacationExplainsTHUMBWEB.1910x1000.jpg"
-       }]
+       }],
+       screen: 'photos' // photos, addPhoto
     };
     this.removePhoto = this.removePhoto.bind(this);
+    this.navigate = this.navigate.bind(this);
     console.log('constructor');
   }
 
@@ -30,6 +33,12 @@ class Main extends Component {
     this.setState((state) => ({
       posts: state.posts.filter(post => post !== postRemoved)
     }));
+  }
+
+  navigate() {
+    this.setState({
+      screen: 'addPhoto'
+    });
   }
 
   componentDidMount() {
@@ -50,8 +59,21 @@ class Main extends Component {
     console.log('render');
     return (
       <div>
-        <Title title={'Photowall'} />
-        <PhotoWall posts={this.state.posts} onRemovePhoto={this.removePhoto} />
+        {
+          this.state.screen === 'photos' && (
+          <div>
+            <Title title={'Photowall'} />
+            <PhotoWall posts={this.state.posts} onRemovePhoto={this.removePhoto} onNavigate={this.navigate} />
+          </div>
+          )
+        }
+        {
+          this.state.screen === 'addPhoto' && (
+          <div>
+            <AddPhoto />
+          </div>
+          )
+        }
       </div>
     );
   }
