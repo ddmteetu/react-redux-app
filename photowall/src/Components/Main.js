@@ -3,7 +3,6 @@ import Title from './Title';
 import PhotoWall from './PhotoWall';
 import AddPhoto from './AddPhoto';
 import {Route} from 'react-router-dom';
-import {connect} from 'react-redux';
 
 class Main extends Component {
   constructor() {
@@ -11,13 +10,12 @@ class Main extends Component {
   }
 
   render() {
-    console.log(this.props.posts);
     return (
       <div>
         <Route exact path="/" render={() => (
           <div>
             <Title title={'Photowall'} />
-            {/*<PhotoWall posts={this.state.posts} onRemovePhoto={this.removePhoto} />*/}
+            <PhotoWall posts={this.props.posts} />
           </div>
         )} />
         {/*<Route path="/AddPhoto" render={({history}) => (
@@ -31,10 +29,4 @@ class Main extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    posts: state
-  }
-}
-
-export default connect(mapStateToProps)(Main)
+export default Main
