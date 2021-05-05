@@ -3,6 +3,7 @@ import Title from './Title';
 import PhotoWall from './PhotoWall';
 import AddPhoto from './AddPhoto';
 import {Route} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class Main extends Component {
   constructor() {
@@ -30,4 +31,10 @@ class Main extends Component {
   }
 }
 
-export default Main;
+function mapStateToProps(state) {
+  return {
+    posts: state
+  }
+}
+
+export default connect(mapStateToProps)(Main)
