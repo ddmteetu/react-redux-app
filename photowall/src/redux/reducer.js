@@ -1,6 +1,6 @@
 import posts from '../data/posts';
 
-const postReducer = function posts(state = posts, action) {
+const postReducer = function (state = posts, action) {
   return state;
 }
 
