@@ -10,8 +10,17 @@ export function startAddingPost(post) {
   };
 }
 
-
-// remove
+export function startLoadingPost() {
+  return (dispatch) => {
+    return database.ref('posts').once('value').then((snapshot) => {
+      let posts = [];
+      snapshot.forEach((childSnapshot) => {
+        posts.push(childSnapshot.val());
+      });
+      dispatch(loadPosts(posts));
+    });
+  };
+}
 
 export function removePost(index) {
   return {
@@ -19,8 +28,6 @@ export function removePost(index) {
     index
   }
 }
-
-// adding post
 
 export function addPost(post) {
   return {
@@ -34,5 +41,12 @@ export function addComment(comment, postId) {
     type: 'ADD_COMMENT',
     comment,
     postId
+  }
+}
+
+export function loadPosts(posts) {
+  return {
+    type: 'LOAD_POSTS',
+    posts
   }
 }
